@@ -249,35 +249,37 @@ function ProductCard({ product, preload, itemListName, layout }: Props) {
                 )}
             </div>
           )}
-        {l?.hide?.allPrices ? "" : (
-          <div class="flex flex-col gap-2">
-            <div
-              class={`flex flex-col gap-0 ${
-                l?.basics?.oldPriceSize === "Normal"
-                  ? "lg:flex-row lg:gap-2"
-                  : ""
-              } ${align === "center" ? "justify-center" : "justify-start"}`}
-            >
+        {l?.hide?.allPrices
+          ? ""
+          : (
+            <div class="flex flex-col gap-2 bg-gray-100 p-2 rounded-md">
               <div
-                class={`line-through text-base-300 text-xs ${
-                  l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                }`}
+                class={`flex flex-col gap-0 ${
+                  l?.basics?.oldPriceSize === "Normal"
+                    ? "lg:flex-row lg:gap-2"
+                    : ""
+                } ${align === "center" ? "justify-center" : "justify-start"}`}
               >
-                {formatPrice(listPrice, offers!.priceCurrency!)}
-              </div>
-              <div class="text-accent text-base lg:text-xl">
-                {formatPrice(price, offers!.priceCurrency!)}
-              </div>
-            </div>
-            {l?.hide?.installments
-              ? ""
-              : (
-                <div class="text-base-300 text-sm lg:text-base">
-                  ou {installments}
+                <div
+                  class={`line-through text-base-300 text-xs ${
+                    l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                  }`}
+                >
+                  {formatPrice(listPrice, offers!.priceCurrency!)}
                 </div>
-              )}
-          </div>
-        )}
+                <div class="text-accent text-base lg:text-xl font-bold">
+                  {formatPrice(price, offers!.priceCurrency!)}
+                </div>
+              </div>
+              {l?.hide?.installments
+                ? ""
+                : (
+                  <div class="text-base-300 text-sm lg:text-base">
+                    ou {installments}
+                  </div>
+                )}
+            </div>
+          )}
 
         {/* SKU Selector */}
         {l?.elementsPositions?.skuSelector === "Bottom" && (
